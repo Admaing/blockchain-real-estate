@@ -21,7 +21,7 @@
             <el-button v-if="val.donatingStatus === '捐赠中'" style="float: right; padding: 3px 0" type="text" @click="updateDonating(val)">取消</el-button>
           </div>
           <div class="item">
-            <el-tag>房产ID: </el-tag>
+            <el-tag>商品ID: </el-tag>
             <span>{{ val.objectOfDonating }}</span>
           </div>
           <div class="item">

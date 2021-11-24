@@ -51,7 +51,7 @@ export const constantRoutes = [{
     name: 'Realestate',
     component: () => import('@/views/realestate/list/index'),
     meta: {
-      title: '房产信息',
+      title: '商品信息',
       icon: 'realestate'
     }
   }]
@@ -154,7 +154,7 @@ export const asyncRoutes = [
       name: 'AddRealestate',
       component: () => import('@/views/realestate/add/index'),
       meta: {
-        title: '新增房产',
+        title: '新增商品',
         icon: 'addRealestate'
       }
     }]

@@ -12,6 +12,8 @@ import (
 // QueryAccountList 查询账户列表
 func QueryAccountList(stub shim.ChaincodeStubInterface, args []string) pb.Response {
 	var accountList []lib.Account
+	// 创建一个空的用户对象列表
+
 	results, err := utils.GetStateByPartialCompositeKeys(stub, lib.AccountKey, args)
 	if err != nil {
 		return shim.Error(fmt.Sprintf("%s", err))

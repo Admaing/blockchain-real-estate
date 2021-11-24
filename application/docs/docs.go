@@ -289,7 +289,7 @@ var doc = `{
                 "produces": [
                     "application/json"
                 ],
-                "summary": "获取房地产信息(空json{}可以查询所有，指定proprietor可以查询指定业主名下房产)",
+                "summary": "获取房地产信息(空json{}可以查询所有，指定proprietor可以查询指定业主名下商品)",
                 "parameters": [
                     {
                         "description": "realEstateQuery",
@@ -534,7 +534,7 @@ var doc = `{
                     "type": "string"
                 },
                 "livingSpace": {
-                    "description": "生活空间",
+                    "description": "新旧程度",
                     "type": "number"
                 },
                 "proprietor": {
@@ -542,7 +542,7 @@ var doc = `{
                     "type": "string"
                 },
                 "totalArea": {
-                    "description": "总面积",
+                    "description": "购买时间",
                     "type": "number"
                 }
             }
@@ -663,8 +663,8 @@ var SwaggerInfo = swaggerInfo{
 	Host:        "",
 	BasePath:    "",
 	Schemes:     []string{},
-	Title:       "基于区块链技术的房地产交易系统api文档",
-	Description: "基于区块链技术的房地产交易系统api文档",
+	Title:       "基于区块链技术的校园二手产交易系统api文档",
+	Description: "基于区块链技术的校园二手交易系统api文档",
 }
 
 type s struct{}

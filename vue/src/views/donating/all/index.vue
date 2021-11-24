@@ -22,7 +22,7 @@
             <el-button v-if="roles[0] !== 'admin'&&(val.donor===accountId||val.grantee===accountId)&&val.donatingStatus==='捐赠中'" style="float: right; padding: 3px 0" type="text" @click="updateDonating(val,'cancelled')">取消</el-button>
           </div>
           <div class="item">
-            <el-tag>房产ID: </el-tag>
+            <el-tag>商品ID: </el-tag>
             <span>{{ val.objectOfDonating }}</span>
           </div>
           <div class="item">

@@ -22,7 +22,7 @@
             <el-button v-if="val.sellingStatus==='交付中'" style="float: right; padding: 3px 8px" type="text" @click="updateSelling(val,'done')">确认收款</el-button>
           </div>
           <div class="item">
-            <el-tag>房产ID: </el-tag>
+            <el-tag>商品ID: </el-tag>
             <span>{{ val.objectOfSale }}</span>
           </div>
           <div class="item">

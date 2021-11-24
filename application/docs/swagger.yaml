@@ -54,13 +54,13 @@ definitions:
         description: 操作人ID
         type: string
       livingSpace:
-        description: 生活空间
+        description: 新旧程度
         type: number
       proprietor:
         description: 所有者(业主)(业主AccountId)
         type: string
       totalArea:
-        description: 总面积
+        description: 购买时间
         type: number
     type: object
   v1.SellingByBuyRequestBody:
@@ -324,7 +324,7 @@ paths:
           description: Internal Server Error
           schema:
             $ref: '#/definitions/app.Response'
-      summary: 获取房地产信息(空json{}可以查询所有，指定proprietor可以查询指定业主名下房产)
+      summary: 获取房地产信息(空json{}可以查询所有，指定proprietor可以查询指定业主名下商品)
   /api/v1/querySellingList:
     post:
       parameters:

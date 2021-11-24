@@ -1,4 +1,6 @@
 package lib
+//  type struct 构造一个结构体，类似面向对象中类
+// 第三个参数，序列化的时候可以直接映射到json格式的名字
 
 // Account 账户，虚拟管理员和若干业主账号
 type Account struct {
@@ -9,13 +11,13 @@ type Account struct {
 
 // RealEstate 房地产作为担保出售、捐赠或质押时Encumbrance为true，默认状态false。
 // 仅当Encumbrance为false时，才可发起出售、捐赠或质押
-// Proprietor和RealEstateID一起作为复合键,保证可以通过Proprietor查询到名下所有的房产信息
+// Proprietor和RealEstateID一起作为复合键,保证可以通过Proprietor查询到名下所有的商品信息
 type RealEstate struct {
 	RealEstateID string  `json:"realEstateId"` //房地产ID
 	Proprietor   string  `json:"proprietor"`   //所有者(业主)(业主AccountId)
 	Encumbrance  bool    `json:"encumbrance"`  //是否作为担保
-	TotalArea    float64 `json:"totalArea"`    //总面积
-	LivingSpace  float64 `json:"livingSpace"`  //生活空间
+	TotalArea    float64 `json:"totalArea"`    //购买时间
+	LivingSpace  float64 `json:"livingSpace"`  //新旧程度
 }
 
 // Selling 销售要约

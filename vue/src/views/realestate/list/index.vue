@@ -24,7 +24,7 @@
           </div>
 
           <div class="item">
-            <el-tag>房产ID: </el-tag>
+            <el-tag>商品ID: </el-tag>
             <span>{{ val.realEstateId }}</span>
           </div>
           <div class="item">
@@ -32,11 +32,11 @@
             <span>{{ val.proprietor }}</span>
           </div>
           <div class="item">
-            <el-tag type="warning">总空间: </el-tag>
+            <el-tag type="warning">购买时间 </el-tag>
             <span>{{ val.totalArea }} ㎡</span>
           </div>
           <div class="item">
-            <el-tag type="danger">居住空间: </el-tag>
+            <el-tag type="danger">新旧程度</el-tag>
             <span>{{ val.livingSpace }} ㎡</span>
           </div>
 

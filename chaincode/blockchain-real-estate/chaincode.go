@@ -24,7 +24,7 @@ func (t *BlockChainRealEstate) Init(stub shim.ChaincodeStubInterface) pb.Respons
 	//初始化默认数据
 	var accountIds = [6]string{
 		"5feceb66ffc8",
-		"6b86b273ff34",
+		"6b86b273ff34", 
 		"d4735e3a265e",
 		"4e07408562be",
 		"4b227777d4dd",
@@ -32,14 +32,14 @@ func (t *BlockChainRealEstate) Init(stub shim.ChaincodeStubInterface) pb.Respons
 	}
 	var userNames = [6]string{"管理员", "①号业主", "②号业主", "③号业主", "④号业主", "⑤号业主"}
 	var balances = [6]float64{0, 5000000, 5000000, 5000000, 5000000, 5000000}
-	//初始化账号数据
+	//初始化账号数据 遍历六个用户 
 	for i, val := range accountIds {
 		account := &lib.Account{
 			AccountId: val,
 			UserName:  userNames[i],
 			Balance:   balances[i],
 		}
-		// 写入账本
+		// 写入账本 账户一个一个写入账本
 		if err := utils.WriteLedger(account, stub, lib.AccountKey, []string{val}); err != nil {
 			return shim.Error(fmt.Sprintf("%s", err))
 		}
@@ -50,6 +50,9 @@ func (t *BlockChainRealEstate) Init(stub shim.ChaincodeStubInterface) pb.Respons
 // Invoke 实现Invoke接口调用智能合约
 func (t *BlockChainRealEstate) Invoke(stub shim.ChaincodeStubInterface) pb.Response {
 	funcName, args := stub.GetFunctionAndParameters()
+	// 提取本次调用的交易所指定的参数
+	// 例如： {"Args":["init","a","100",b,"200"]}
+	// funcName = init  args = ["a","100","b","200"]
 	switch funcName {
 	case "queryAccountList":
 		return routers.QueryAccountList(stub, args)

@@ -77,7 +77,7 @@ func CreateRealEstate(stub shim.ChaincodeStubInterface, args []string) pb.Respon
 	return shim.Success(realEstateByte)
 }
 
-// QueryRealEstateList 查询房地产(可查询所有，也可根据所有人查询名下房产)
+// QueryRealEstateList 查询房地产(可查询所有，也可根据所有人查询名下商品)
 func QueryRealEstateList(stub shim.ChaincodeStubInterface, args []string) pb.Response {
 	var realEstateList []lib.RealEstate
 	results, err := utils.GetStateByPartialCompositeKeys2(stub, lib.RealEstateKey, args)

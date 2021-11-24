@@ -25,7 +25,7 @@
             <span>{{ val.createTime }}</span>
           </div>
           <div class="item">
-            <el-tag>房产ID: </el-tag>
+            <el-tag>商品ID: </el-tag>
             <span>{{ val.selling.objectOfSale }}</span>
           </div>
           <div class="item">

@@ -4,6 +4,7 @@ import (
 	"github.com/gin-gonic/gin"
 	"github.com/togettoyou/blockchain-real-estate/application/pkg/app"
 	"net/http"
+	"fmt"
 )
 
 // @Summary 测试输出Hello
@@ -16,4 +17,5 @@ func Hello(c *gin.Context) {
 	appG.Response(http.StatusOK, "成功", map[string]interface{}{
 		"msg": "Hello",
 	})
+	fmt.Println("this is hello")
 }

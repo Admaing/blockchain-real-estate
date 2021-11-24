@@ -14,8 +14,8 @@ import (
 type RealEstateRequestBody struct {
 	AccountId   string  `json:"accountId"`   //操作人ID
 	Proprietor  string  `json:"proprietor"`  //所有者(业主)(业主AccountId)
-	TotalArea   float64 `json:"totalArea"`   //总面积
-	LivingSpace float64 `json:"livingSpace"` //生活空间
+	TotalArea   float64 `json:"totalArea"`   //购买时间
+	LivingSpace float64 `json:"livingSpace"` //新旧程度
 }
 
 type RealEstateQueryRequestBody struct {
@@ -37,7 +37,7 @@ func CreateRealEstate(c *gin.Context) {
 		return
 	}
 	if body.TotalArea <= 0 || body.LivingSpace <= 0 || body.LivingSpace > body.TotalArea {
-		appG.Response(http.StatusBadRequest, "失败", "TotalArea总面积和LivingSpace生活空间必须大于0，且生活空间小于等于总面积")
+		appG.Response(http.StatusBadRequest, "失败", "TotalArea购买时间和LivingSpace新旧程度必须大于0，且新旧程度小于等于购买时间")
 		return
 	}
 	var bodyBytes [][]byte
@@ -59,7 +59,7 @@ func CreateRealEstate(c *gin.Context) {
 	appG.Response(http.StatusOK, "成功", data)
 }
 
-// @Summary 获取房地产信息(空json{}可以查询所有，指定proprietor可以查询指定业主名下房产)
+// @Summary 获取房地产信息(空json{}可以查询所有，指定proprietor可以查询指定业主名下商品)
 // @Param realEstateQuery body RealEstateQueryRequestBody true "realEstateQuery"
 // @Produce  json
 // @Success 200 {object} app.Response

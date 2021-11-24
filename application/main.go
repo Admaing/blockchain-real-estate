@@ -29,6 +29,7 @@ func main() {
 	if err != nil {
 		log.Printf("时区设置失败 %s", err)
 	}
+	log.Printf("12312")
 	time.Local = timeLocal
 	blockchain.Init()
 	go service.Init()

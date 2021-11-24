@@ -272,7 +272,7 @@
                 "produces": [
                     "application/json"
                 ],
-                "summary": "获取房地产信息(空json{}可以查询所有，指定proprietor可以查询指定业主名下房产)",
+                "summary": "获取房地产信息(空json{}可以查询所有，指定proprietor可以查询指定业主名下商品)",
                 "parameters": [
                     {
                         "description": "realEstateQuery",
@@ -517,7 +517,7 @@
                     "type": "string"
                 },
                 "livingSpace": {
-                    "description": "生活空间",
+                    "description": "新旧程度",
                     "type": "number"
                 },
                 "proprietor": {
@@ -525,7 +525,7 @@
                     "type": "string"
                 },
                 "totalArea": {
-                    "description": "总面积",
+                    "description": "购买时间",
                     "type": "number"
                 }
             }

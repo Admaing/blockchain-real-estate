@@ -72,47 +72,47 @@ func Test_CreateRealEstate(t *testing.T) {
 		[]byte("createRealEstate"),
 		[]byte("5feceb66ffc8"), //操作人
 		[]byte("6b86b273ff34"), //所有者
-		[]byte("50"),           //总面积
-		[]byte("30"),           //生活空间
+		[]byte("50"),           //购买时间
+		[]byte("30"),           //新旧程度
 	})
 	//操作人权限不足
 	checkInvoke(t, stub, [][]byte{
 		[]byte("createRealEstate"),
 		[]byte("6b86b273ff34"), //操作人
 		[]byte("4e07408562be"), //所有者
-		[]byte("50"),           //总面积
-		[]byte("30"),           //生活空间
+		[]byte("50"),           //购买时间
+		[]byte("30"),           //新旧程度
 	})
 	//操作人应为管理员且与所有人不能相同
 	checkInvoke(t, stub, [][]byte{
 		[]byte("createRealEstate"),
 		[]byte("5feceb66ffc8"), //操作人
 		[]byte("5feceb66ffc8"), //所有者
-		[]byte("50"),           //总面积
-		[]byte("30"),           //生活空间
+		[]byte("50"),           //购买时间
+		[]byte("30"),           //新旧程度
 	})
 	//业主proprietor信息验证失败
 	checkInvoke(t, stub, [][]byte{
 		[]byte("createRealEstate"),
 		[]byte("5feceb66ffc8"),    //操作人
 		[]byte("6b86b273ff34555"), //所有者
-		[]byte("50"),              //总面积
-		[]byte("30"),              //生活空间
+		[]byte("50"),              //购买时间
+		[]byte("30"),              //新旧程度
 	})
 	//参数个数不满足
 	checkInvoke(t, stub, [][]byte{
 		[]byte("createRealEstate"),
 		[]byte("5feceb66ffc8"), //操作人
 		[]byte("6b86b273ff34"), //所有者
-		[]byte("50"),           //总面积
+		[]byte("50"),           //购买时间
 	})
 	//参数格式转换出错
 	checkInvoke(t, stub, [][]byte{
 		[]byte("createRealEstate"),
 		[]byte("5feceb66ffc8"), //操作人
 		[]byte("6b86b273ff34"), //所有者
-		[]byte("50f"),          //总面积
-		[]byte("30"),           //生活空间
+		[]byte("50f"),          //购买时间
+		[]byte("30"),           //新旧程度
 	})
 }
 
@@ -125,29 +125,29 @@ func checkCreateRealEstate(stub *shim.MockStub, t *testing.T) []lib.RealEstate {
 		[]byte("createRealEstate"),
 		[]byte("5feceb66ffc8"), //操作人
 		[]byte("6b86b273ff34"), //所有者
-		[]byte("50"),           //总面积
-		[]byte("30"),           //生活空间
+		[]byte("50"),           //购买时间
+		[]byte("30"),           //新旧程度
 	})
 	resp2 := checkInvoke(t, stub, [][]byte{
 		[]byte("createRealEstate"),
 		[]byte("5feceb66ffc8"), //操作人
 		[]byte("6b86b273ff34"), //所有者
-		[]byte("80"),           //总面积
-		[]byte("60.8"),         //生活空间
+		[]byte("80"),           //购买时间
+		[]byte("60.8"),         //新旧程度
 	})
 	resp3 := checkInvoke(t, stub, [][]byte{
 		[]byte("createRealEstate"),
 		[]byte("5feceb66ffc8"), //操作人
 		[]byte("4e07408562be"), //所有者
-		[]byte("60"),           //总面积
-		[]byte("40"),           //生活空间
+		[]byte("60"),           //购买时间
+		[]byte("40"),           //新旧程度
 	})
 	resp4 := checkInvoke(t, stub, [][]byte{
 		[]byte("createRealEstate"),
 		[]byte("5feceb66ffc8"), //操作人
 		[]byte("ef2d127de37b"), //所有者
-		[]byte("80"),           //总面积
-		[]byte("60"),           //生活空间
+		[]byte("80"),           //购买时间
+		[]byte("60"),           //新旧程度
 	})
 	json.Unmarshal(bytes.NewBuffer(resp1.Payload).Bytes(), &realEstate)
 	realEstateList = append(realEstateList, realEstate)
@@ -283,11 +283,11 @@ func Test_QuerySellingList(t *testing.T) {
 		[]byte("queryAccountList"),
 		[]byte(realEstateList[2].Proprietor),
 	}).Payload)))
-	fmt.Println(fmt.Sprintf("》确认收款前卖家%s的房产信息\n%s", realEstateList[0].Proprietor, string(checkInvoke(t, stub, [][]byte{
+	fmt.Println(fmt.Sprintf("》确认收款前卖家%s的商品信息\n%s", realEstateList[0].Proprietor, string(checkInvoke(t, stub, [][]byte{
 		[]byte("queryRealEstateList"),
 		[]byte(realEstateList[0].Proprietor),
 	}).Payload)))
-	fmt.Println(fmt.Sprintf("》确认收款前买家%s的房产信息\n%s", realEstateList[2].Proprietor, string(checkInvoke(t, stub, [][]byte{
+	fmt.Println(fmt.Sprintf("》确认收款前买家%s的商品信息\n%s", realEstateList[2].Proprietor, string(checkInvoke(t, stub, [][]byte{
 		[]byte("queryRealEstateList"),
 		[]byte(realEstateList[2].Proprietor),
 	}).Payload)))
@@ -313,11 +313,11 @@ func Test_QuerySellingList(t *testing.T) {
 		[]byte("queryAccountList"),
 		[]byte(realEstateList[2].Proprietor),
 	}).Payload)))
-	fmt.Println(fmt.Sprintf("》确认收款后卖家%s的房产信息\n%s", realEstateList[0].Proprietor, string(checkInvoke(t, stub, [][]byte{
+	fmt.Println(fmt.Sprintf("》确认收款后卖家%s的商品信息\n%s", realEstateList[0].Proprietor, string(checkInvoke(t, stub, [][]byte{
 		[]byte("queryRealEstateList"),
 		[]byte(realEstateList[0].Proprietor),
 	}).Payload)))
-	fmt.Println(fmt.Sprintf("》确认收款后买家%s的房产信息\n%s", realEstateList[2].Proprietor, string(checkInvoke(t, stub, [][]byte{
+	fmt.Println(fmt.Sprintf("》确认收款后买家%s的商品信息\n%s", realEstateList[2].Proprietor, string(checkInvoke(t, stub, [][]byte{
 		[]byte("queryRealEstateList"),
 		[]byte(realEstateList[2].Proprietor),
 	}).Payload)))
@@ -336,7 +336,7 @@ func Test_Donating(t *testing.T) {
 	stub := initTest(t)
 	realEstateList := checkCreateRealEstate(stub, t)
 
-	fmt.Println(fmt.Sprintf("获取房地产信息\n%s",
+	fmt.Println(fmt.Sprintf("获取商品信息\n%s",
 		string(checkInvoke(t, stub, [][]byte{
 			[]byte("queryRealEstateList"),
 		}).Payload)))
@@ -348,7 +348,7 @@ func Test_Donating(t *testing.T) {
 		[]byte(realEstateList[2].Proprietor),
 	}).Payload)))
 
-	fmt.Println(fmt.Sprintf("获取房地产信息\n%s",
+	fmt.Println(fmt.Sprintf("获取商品信息\n%s",
 		string(checkInvoke(t, stub, [][]byte{
 			[]byte("queryRealEstateList"),
 		}).Payload)))
@@ -380,7 +380,7 @@ func Test_Donating(t *testing.T) {
 		[]byte("cancelled"),
 	}).Payload)))
 
-	fmt.Println(fmt.Sprintf("获取房地产信息\n%s",
+	fmt.Println(fmt.Sprintf("获取商品信息\n%s",
 		string(checkInvoke(t, stub, [][]byte{
 			[]byte("queryRealEstateList"),
 		}).Payload)))
