@@ -22,7 +22,8 @@ echo "二、生成证书和起始区块信息"
 cryptogen generate --config=./crypto-config.yaml
 configtxgen -profile OneOrgOrdererGenesis -outputBlock ./config/genesis.block
 
-echo "区块链 ： 启动"
+echo "区块链 ： 启动"  
+# 定义运行多个Dokcer
 docker-compose up -d
 echo "正在等待节点的启动完成，等待10秒"
 sleep 10
@@ -41,7 +42,7 @@ docker exec cli peer channel join -b assetschannel.block
 # -p 是目录，目录是基于cli这个docker里面的$GOPATH相对的
 echo "六、链码安装"
 docker exec cli peer chaincode install -n blockchain-real-estate -v 1.0.0 -l golang -p github.com/togettoyou/blockchain-real-estate/chaincode/blockchain-real-estate
-
+# docker exec cli peer chaincode install -n blockchain-real-estate -v 1.0.0 -l golang -p /home/gyf/Downloads/program/blockchain-real-estate/chaincode/blockchain-real-estate
 #-n 对应前文安装链码的名字 其实就是composer network start bna名字
 #-v 为版本号，相当于composer network start bna名字@版本号
 #-C 是通道，在fabric的世界，一个通道就是一条不同的链，composer并没有很多提现这点，composer提现channel也就在于多组织时候的数据隔离和沟通使用

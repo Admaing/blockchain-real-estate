@@ -12,12 +12,15 @@ import (
 
 // InitRouter 初始化路由信息
 func InitRouter() *gin.Engine {
+	// 不使用默认的中间件
 	r := gin.New()
 	r.Use(gin.Logger())
 	r.Use(gin.Recovery())
+	// 跨域,以后端分离,存在跨域问题
 	r.Use(Cors())
 	//swagger文档
 	r.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerFiles.Handler))
+	// 设置以下分组路由
 	apiV1 := r.Group("/api/v1")
 	{
 		apiV1.GET("/hello", v1.Hello)

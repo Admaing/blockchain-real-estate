@@ -14,6 +14,7 @@ import (
 )
 
 func init() {
+	// 初始化时会通过app.init将相关配置文件通过Mapto映射到结构体中
 	setting.Setup()
 }
 
@@ -33,13 +34,18 @@ func main() {
 	time.Local = timeLocal
 	blockchain.Init()
 	go service.Init()
+	// 设置模式，test,realease , debug三种模式
 	gin.SetMode(setting.ServerSetting.RunMode)
+	// 初始化路由信息
 	routersInit := routers.InitRouter()
+	// 服务器超时时间
 	readTimeout := setting.ServerSetting.ReadTimeout
+	// 服务器写入时间
 	writeTimeout := setting.ServerSetting.WriteTimeout
+	// 服务器运行端口
 	endPoint := fmt.Sprintf(":%d", setting.ServerSetting.HttpPort)
 	maxHeaderBytes := 1 << 20
-
+	// 返回服务控制信息
 	server := &http.Server{
 		Addr:           endPoint,
 		Handler:        routersInit,
@@ -50,6 +56,7 @@ func main() {
 
 	log.Printf("[info] start http server listening %s", endPoint)
 
+	// server.ListenAndServe()创建服务并且监听
 	if err := server.ListenAndServe(); err != nil {
 		log.Printf("start http server failed %s", err)
 	}

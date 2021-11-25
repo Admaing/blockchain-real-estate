@@ -1,8 +1,13 @@
 version: '2'
 
+# Compose中两个重要的概念
+#   service：一个应用的容器，可包括若干个运行相同镜像的实例
+#   project：由一组关联的应用容器组成的一个完整业务单元
+# 
+
 services:
-  peer-base: # peer的公共服务
-    image: hyperledger/fabric-peer:1.4.2
+  peer-base: # peer的公共服务 指定服务名称
+    image: hyperledger/fabric-peer:1.4.2 #指定服务所使用的镜像
     environment:
       - GODEBUG=netdns=go
       - CORE_VM_ENDPOINT=unix:///host/var/run/docker.sock # docker的服务端注入

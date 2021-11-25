@@ -9,11 +9,11 @@ import (
 	"github.com/togettoyou/blockchain-real-estate/chaincode/blockchain-real-estate/utils"
 	"time"
 )
-
+// 每个链码都需要定义结构体
 type BlockChainRealEstate struct {
 }
 
-// Init 链码初始化
+// Init 链码初始化   执行peer chaincode instantiate实例化的时候会调用该方法
 func (t *BlockChainRealEstate) Init(stub shim.ChaincodeStubInterface) pb.Response {
 	fmt.Println("链码初始化")
 	timeLocal, err := time.LoadLocation("Asia/Chongqing")
@@ -52,7 +52,11 @@ func (t *BlockChainRealEstate) Invoke(stub shim.ChaincodeStubInterface) pb.Respo
 	funcName, args := stub.GetFunctionAndParameters()
 	// 提取本次调用的交易所指定的参数
 	// 例如： {"Args":["init","a","100",b,"200"]}
-	// funcName = init  args = ["a","100","b","200"]
+	// funcName = queryAccountList  args = 为用户的二进制数字
+
+	// ChaincodeID: ChainCodeName,
+		// Fcn:         fcn,
+		// Args:        args,
 	switch funcName {
 	case "queryAccountList":
 		return routers.QueryAccountList(stub, args)

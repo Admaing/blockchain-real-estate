@@ -28,7 +28,7 @@ func WriteLedger(obj interface{}, stub shim.ChaincodeStubInterface, objectType s
 	return nil
 }
 
-// DelLedger 删除账本
+// DelLedger 删除账本	
 func DelLedger(stub shim.ChaincodeStubInterface, objectType string, keys []string) error {
 	//创建复合主键
 	var key string
@@ -45,7 +45,7 @@ func DelLedger(stub shim.ChaincodeStubInterface, objectType string, keys []strin
 }
 
 // GetStateByPartialCompositeKeys 根据复合主键查询数据(适合获取全部，多个，单个数据)
-// 将keys拆分查询
+// 将keys拆分查询 keys = 是用户的二进制数，objectType = 键值对中的key const Ac
 func GetStateByPartialCompositeKeys(stub shim.ChaincodeStubInterface, objectType string, keys []string) (results [][]byte, err error) {
 	if len(keys) == 0 {
 		// 传入的keys长度为0，则查找并返回所有数据
@@ -54,6 +54,7 @@ func GetStateByPartialCompositeKeys(stub shim.ChaincodeStubInterface, objectType
 		if err != nil {
 			return nil, errors.New(fmt.Sprintf("%s-获取全部数据出错: %s", objectType, err))
 		}
+		// 在return 后面执行 defer是go里面的延时函数 
 		defer resultIterator.Close()
 
 		//检查返回的数据是否为空，不为空则遍历数据，否则返回空数组

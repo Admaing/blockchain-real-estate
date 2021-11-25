@@ -4,6 +4,7 @@ services:
   orderer.blockchainrealestate.com:
     container_name: orderer.blockchainrealestate.com
     image: hyperledger/fabric-orderer:1.4.2
+# 排序节点的镜像，tag需要更改
     environment:
       - GODEBUG=netdns=go
       - ORDERER_GENERAL_LOGLEVEL=debug
@@ -13,10 +14,12 @@ services:
       - ORDERER_GENERAL_LOCALMSPID=OrdererMSP
       - ORDERER_GENERAL_LOCALMSPDIR=/etc/hyperledger/orderer/msp # 证书相关
     working_dir: /opt/gopath/src/github.com/hyperledger/fabric/orderer
+    # 排序节点的路径
     command: orderer
     ports:
       - 7050:7050 # 17050:7050
     volumes:
+    # 映射
       - ./config/genesis.block:/etc/hyperledger/config/genesis.block
       - ./crypto-config/ordererOrganizations/blockchainrealestate.com/orderers/orderer.blockchainrealestate.com/:/etc/hyperledger/orderer
 
@@ -142,7 +145,7 @@ services:
       - ./crypto-config/peerOrganizations/org2.blockchainrealestate.com/peers/peer1.org2.blockchainrealestate.com:/etc/hyperledger/peer
     depends_on:
       - orderer.blockchainrealestate.com
-
+#将本地链码导入至镜像，然后进行安装
   cli:
     container_name: cli
     image: hyperledger/fabric-tools:1.4.2
