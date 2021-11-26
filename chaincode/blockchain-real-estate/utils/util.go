@@ -11,6 +11,8 @@ import (
 func WriteLedger(obj interface{}, stub shim.ChaincodeStubInterface, objectType string, keys []string) error {
 	//创建复合主键
 	var key string
+
+	// CreateCompositeKey创建一个string组合键  返回一个组合键和一个错误信息
 	if val, err := stub.CreateCompositeKey(objectType, keys); err != nil {
 		return errors.New(fmt.Sprintf("%s-创建复合主键出错 %s", objectType, err))
 	} else {
@@ -22,6 +24,7 @@ func WriteLedger(obj interface{}, stub shim.ChaincodeStubInterface, objectType s
 		return errors.New(fmt.Sprintf("%s-序列化json数据失败出错: %s", objectType, err))
 	}
 	//写入区块链账本
+	// 通过一个键值和一个byte数组按照Key value存入账本，若原来存在则会覆盖原有的值
 	if err := stub.PutState(key, bytes); err != nil {
 		return errors.New(fmt.Sprintf("%s-写入区块链账本出错: %s", objectType, err))
 	}

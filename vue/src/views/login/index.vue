@@ -20,7 +20,7 @@
       <el-button :loading="loading" type="primary" style="width:100%;margin-bottom:30px;" @click.native.prevent="handleLogin">立即进入</el-button>
 
       <div class="tips">
-        <span style="margin-right:20px;">tips: 选择不同用户角色模拟交易</span>
+        <span style="margin-right:20px;">tips: 选择不同User角色模拟交易</span>
       </div>
 
     </el-form>
@@ -49,6 +49,7 @@ export default {
     }
   },
   created() {
+    // 初始化时调用，获取列表
     queryAccountList().then(response => {
       if (response !== null) {
         this.accountList = response
@@ -59,6 +60,9 @@ export default {
     handleLogin() {
       if (this.value) {
         this.loading = true
+        // 调用src/api/account中login方法  第二个为值
+        window.alert(typeof this.value);
+        console.log("this.value：",this.value)
         this.$store.dispatch('account/login', this.value).then(() => {
           this.$router.push({ path: this.redirect || '/' })
           this.loading = false
@@ -71,6 +75,8 @@ export default {
     },
     selectGet(accountId) {
       this.value = accountId
+      
+      console.log("this.value：",this.value)
     }
   }
 }

@@ -10,6 +10,8 @@ export function queryAccountList() {
 
 // 登录
 export function login(data) {
+  window.alert("data",data)
+  console.log("data",data)
   return request({
     url: '/queryAccountList',
     method: 'post',

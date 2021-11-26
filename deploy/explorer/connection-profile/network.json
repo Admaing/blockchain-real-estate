@@ -29,7 +29,7 @@
     "Org1MSP": {
       "mspid": "Org1MSP",
       "adminPrivateKey": {
-        "path": "/tmp/crypto/peerOrganizations/org1.blockchainrealestate.com/users/Admin@org1.blockchainrealestate.com/msp/keystore/f816987d228c84f25d9a084360a193f4195683583c08f4437737fb4bc5f23f96_sk"
+        "path": "/tmp/crypto/peerOrganizations/org1.blockchainrealestate.com/users/Admin@org1.blockchainrealestate.com/msp/keystore/69f76254119d46a523851955d12fa7b60d02885b4d65784a091b375e5015564b_sk"
       },
       "peers": [
         "peer0.org1.blockchainrealestate.com"
